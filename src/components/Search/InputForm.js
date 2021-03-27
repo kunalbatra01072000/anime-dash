@@ -30,6 +30,7 @@ const InputForm = ({ getResource }) => {
             onChange={(e) => settext(e.target.value)}
             type='text'
             placeholder='Enter keyword'
+            minLength='3'
             style={{ height: "40px" }}
           ></input>
         </div>

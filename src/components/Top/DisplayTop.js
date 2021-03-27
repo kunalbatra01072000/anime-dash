@@ -8,7 +8,7 @@ const DisplayTop = ({ resource, type }) => {
         style={{ maxHeight: "300px" }}
       />
       <h3> {item.title}</h3>
-      {item.score && <h4>Score : {item.score}</h4>}
+      {item.score !== undefined && <h4>Score : {item.score}</h4>}
       <Link to={`/${type}/${item.mal_id}`} className='btn btn-primary'>
         More Info
       </Link>
