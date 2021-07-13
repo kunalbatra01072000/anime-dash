@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
+import PageNotFound from "../layout/PageNotFound";
 const DisplayTop = ({ resource, type }) => {
+
+  if(!resource || !type) return <PageNotFound  message={'Resource not found !'} messageInfo='No results against the search keyword!'/>;
+
   const displayitem = resource.map((item) => (
     <div className='card text-center' key={item.mal_id}>
       <img

@@ -1,16 +1,19 @@
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
+import Spinner from "../layout/Spinner";
 
 const colors = ["dark", "light", "danger", "success", "primary"];
 
 const Anime = ({ match, setisalert }) => {
   const [anime, setanime] = useState(null);
+  const [loading, setloading] = useState(false)
   useEffect(() => {
     getResource();
     // eslint-disable-next-line
   }, []);
 
   const getResource = async () => {
+    setloading(true)
     try {
       const res = await axios.get(
         `https://api.jikan.moe/v3/anime/${match.params.mal_id}`
@@ -32,7 +35,9 @@ const Anime = ({ match, setisalert }) => {
     } catch (err) {
       setisalert(true);
     }
+    setloading(false)
   };
+  if(loading===true) return <Spinner />
   return (
     <Fragment>
       {anime && (

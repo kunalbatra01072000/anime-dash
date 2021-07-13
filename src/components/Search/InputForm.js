@@ -7,7 +7,6 @@ const InputForm = ({ getResource }) => {
     e.preventDefault();
     getResource(text, opt);
     settext("");
-    setopt("anime");
   };
   return (
     <div>

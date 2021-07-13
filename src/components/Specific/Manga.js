@@ -1,16 +1,19 @@
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
+import Spinner from "../layout/Spinner";
 
 const colors = ["dark", "light", "danger", "success", "primary"];
 
 const Manga = ({ match, setisalert }) => {
   const [manga, setmanga] = useState(null);
+  const [loading, setloading] = useState(false)
   useEffect(() => {
     getResource();
     // eslint-disable-next-line
   }, []);
 
   const getResource = async () => {
+    setloading(true);
     try {
       const res = await axios.get(
         `https://api.jikan.moe/v3/manga/${match.params.mal_id}`
@@ -31,9 +34,11 @@ const Manga = ({ match, setisalert }) => {
     } catch (err) {
       setisalert(true);
     }
+    setloading(false);
   };
+  if(loading===true) return <Spinner />
   return (
-    <Fragment>
+      <Fragment>
       {manga && (
         <Fragment>
           <h1 className='text-center' style={{ marginBottom: "1.5rem" }}>
@@ -78,6 +83,8 @@ const Manga = ({ match, setisalert }) => {
         </Fragment>
       )}
     </Fragment>
+    
+    
   );
 };
 
